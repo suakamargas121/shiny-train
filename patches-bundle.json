@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-17T03:15:11",
-  "description": "## 1.0.0 (2026-08-17)\n\n### ✨ New Features\n\n* Port iPusnas patches ([c32bc29](https://github.com/kuchingneko28/ipusnas-patches/commit/c32bc29394c3ee677a45dc77d2e982b0ee044e15))",
-  "download_url": "https://github.com/kuchingneko28/ipusnas-patches/releases/download/v1.0.0/patches-1.0.0.mpp",
+  "created_at": "2026-09-08T19:53:14",
+  "description": "## 1.0.0-dev.1 (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* make gradlew executable ([835a055](https://github.com/suakamargas121/shiny-train/commit/835a0556fc33f42c7e643aba50b56130ea5cb749))\n* resolve Kotlin compile errors in fingerprint helpers ([c33d402](https://github.com/suakamargas121/shiny-train/commit/c33d40244c81a9baa6b8009ee9e3fc8706a3a6ef))",
+  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.0.0-dev.1/patches-1.0.0-dev.1.mpp",
   "signature_download_url": "",
-  "version": "1.0.0"
+  "version": "1.0.0-dev.1"
 }
