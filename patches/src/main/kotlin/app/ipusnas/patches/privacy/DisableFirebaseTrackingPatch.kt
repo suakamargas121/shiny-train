@@ -6,7 +6,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.ipusnas.patches.shared.Constants.COMPATIBILITY_IPUSNAS
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 /**
  * Disables Google Firebase Analytics collection and removes the Firebase

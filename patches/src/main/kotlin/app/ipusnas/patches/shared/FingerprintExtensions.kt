@@ -2,6 +2,7 @@ package app.ipusnas.patches.shared
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 
 /**
@@ -10,7 +11,7 @@ import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
  * versions. Used to implement per-version fingerprint fallbacks: try the
  * 2.1.4-shaped fingerprint, then the 2.1.6-shaped one.
  */
-context(BytecodePatchContext)
+context(_: BytecodePatchContext)
 val Fingerprint.methodOrNull: MutableMethod?
     get() = matchAllOrNull()?.firstOrNull()?.method
 
@@ -22,11 +23,11 @@ val Fingerprint.methodOrNull: MutableMethod?
  * fingerprintOrNull(FpV214, FpV216).addInstruction(0, "return-void")
  * ```
  */
-context(BytecodePatchContext)
+context(_: BytecodePatchContext)
 fun fingerprintOrNull(vararg fingerprints: Fingerprint): MutableMethod {
     return fingerprints.firstNotNullOfOrNull { it.methodOrNull }
-        ?: throw IllegalStateException(
+        ?: throw PatchException(
             "None of the fingerprints matched: " +
-                fingerprints.joinToString { it.definingClass }
+                fingerprints.joinToString { it.definingClass.toString() }
         )
 }
