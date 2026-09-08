@@ -44,8 +44,26 @@ object SecurityReporterIntegrityFingerprintV216 : Fingerprint(
 )
 
 // NOTE: SecurityNative (isRooted / isDebugged / verifyApkIntegrity) no longer
-// exists anywhere in the 2.1.6 dex files. These fingerprints are kept only for
-// reference; no shipped patch currently uses them.
+// exists in 2.1.6. It was replaced by Lcom/aksaramaya/core/utils/DeviceIntegrityNative;,
+// which exposes isAdbEnabled()I / isDebugBuild()I (Kotlin wrappers around
+// Settings.Global adb_enabled and ApplicationInfo.FLAG_DEBUGGABLE) plus a
+// native probe()I loaded from libdrm-bridge.so. As of 2.1.6 NO code in any dex
+// calls these methods (the class is dormant/dead), so there is no call site to
+// patch; these fingerprints are kept only for reference in case a future
+// version re-activates the checks.
+object DeviceIntegrityNativeIsAdbEnabledFingerprint : Fingerprint(
+    definingClass = "Lcom/aksaramaya/core/utils/DeviceIntegrityNative;",
+    name = "isAdbEnabled",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "I",
+)
+
+object DeviceIntegrityNativeIsDebugBuildFingerprint : Fingerprint(
+    definingClass = "Lcom/aksaramaya/core/utils/DeviceIntegrityNative;",
+    name = "isDebugBuild",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "I",
+)
 object SecurityNativeIsRootedFingerprint : Fingerprint(
     definingClass = "Lcom/aksaramaya/ilibrarycore/security/SecurityNative;",
     name = "isRooted",

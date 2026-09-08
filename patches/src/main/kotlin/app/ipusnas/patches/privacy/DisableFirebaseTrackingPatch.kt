@@ -1,13 +1,10 @@
 package app.ipusnas.patches.privacy
 
-import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
-import app.morphe.patcher.patch.ResourcePatchContext
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.ipusnas.patches.shared.Constants.COMPATIBILITY_IPUSNAS
-import app.ipusnas.patches.shared.fingerprintOrNull
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.ReferenceInstruction
 
@@ -94,36 +91,29 @@ private val disableFirebaseManifestPatch = resourcePatch {
  * removed from the manifest the token registration is pointless and can
  * throw, so we skip only the token block.
  *
- * In 2.1.6 C()V the instruction layout is:
- *   insns 0..55   notification-channel creation (kept)
- *   insn 56..57   FirebaseApp null checks
- *   insn 58..69   FirebaseMessaging.setAutoInitEnabled / getToken / subscribe
- *   insn 69       return-void (end of channel path)
+ * 2.1.6 C()V layout:
+ *   insns 0..55   notification-channel creation      (kept)
+ *   insns 56..57  FirebaseApp null checks            (harmless)
+ *   insn  58      const-class FirebaseMessaging      (skip from here)
+ *   insns 58..68  setAutoInitEnabled / getToken etc. (skipped)
+ *   insn  69      return-void                        (jump target)
  *
  * Inserting `return-void` at index 0 would also kill channel creation, so the
- * patch instead jumps over the Firebase block: a `goto` whose target is the
- * method's own trailing return keeps 0..57 intact and skips 58..69.
+ * patch inserts a `goto` right before the Firebase const-class landing on the
+ * first return-void at or after it. The branch offset must be in 16-bit code
+ * units (invoke = 3, const-class = 2, goto = 2), NOT instruction indices, and
+ * includes the goto's own 2 code units.
  */
 private val neuterLandingPageFcmPatch = bytecodePatch {
     compatibleWith(COMPATIBILITY_IPUSNAS)
 
     execute {
-        val method = fingerprintOrNull(
-            LandingPageFcmTokenFingerprint,
-            LandingPageFcmTokenFingerprintV216,
-        )
+        val method = LandingPageFcmTokenFingerprint.methodOrNull
+            ?: LandingPageFcmTokenFingerprintV216.methodOrNull
+            ?: throw IllegalStateException("LandingPageAct FCM method not found")
 
         val instructions = method.instructionsOrNull?.toList() ?: emptyList()
 
-        // In 2.1.6 C()V the layout is (code-unit offsets in parentheses):
-        //   0..55   notification-channel creation            (kept)
-        //   56..57  FirebaseApp null checks                  (harmless)
-        //   58      const-class FirebaseMessaging            (skip from here)
-        //   58..69  setAutoInitEnabled/getToken/subscribe    (skipped)
-        //   69      return-void                              (jump target)
-        // We insert a goto right before the Firebase const-class that lands on
-        // the first return-void at or after it. Offsets are in 16-bit code
-        // units (invoke = 3, const-class = 2), NOT instruction indices.
         val firebaseIdx = instructions.indexOfFirst {
             it.opcode == Opcode.CONST_CLASS &&
                 (it as? ReferenceInstruction)?.reference.toString().contains("FirebaseMessaging")
@@ -146,7 +136,6 @@ private val neuterLandingPageFcmPatch = bytecodePatch {
     }
 }
 
-@Suppress("unused")
 val disableFirebaseTrackingPatch = bytecodePatch(
     name = "Disable Firebase Analytics and FCM",
     description = "Disables Google Firebase Analytics tracking and removes Firebase Cloud Messaging push notifications.",

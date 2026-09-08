@@ -17,7 +17,7 @@ All six patches carry 2.1.4 + 2.1.6 fingerprints with automatic fallback:
 | Reader-intent builder | `Liq;->a` | now `Llq;->a`; `Liq;` is a RecyclerView adapter; `BookModel` moved to `mam.reader.ilibrary.core.model` |
 | `RetrofitHelper` pinning | `certificatePinner` field + named `SSLPinningInterceptor` inner class | field renamed to `a`, interceptor replaced by synthesised `Liz;` (uses native `NativePinning.verify`) |
 | `PDFViewAct` / `FolioActivity` `setFlags(0x2000)` | unchanged | unchanged |
-| `SecurityNative` (root/debug checks) | present | **removed from the app entirely** — no fingerprint shipped |
+| `SecurityNative` (root/debug checks) | present | renamed to `DeviceIntegrityNative` (`isAdbEnabled`/`isDebugBuild` wrappers + native `probe()` from libdrm-bridge.so) — currently **dead code, zero call sites**, reference fingerprints shipped |
 
 The Firebase patch no longer `return-void`s the whole FCM method (that also
 killed notification-channel creation in 2.1.6); it now inserts a `goto` that

@@ -16,12 +16,12 @@ private const val EXTENSION_CLASS = "Lapp/ipusnas/extension/patches/BookExporter
  *     {@code BookExporter.addExportMenuItem(activity, menu)}, which registers a
  *     menu item that requests an export and then triggers the app's own
  *     download flow ({@code BookDetailAct.O()}) for the currently shown book.
- *  2. {@code Liq.a} (the reader-intent builder) is patched to call
- *     {@code BookExporter.maybeExport(context, file, password, title)} right
- *     before the PDF/EPUB reader is launched. At that point BookLoadingAct has
- *     already downloaded and decrypted the book, so this hook has everything:
- *     the readable file, the decrypted book password (PDF only) used to unlock
- *     the PDF, and the book title for the filename.
+ *  2. The reader-intent builder (Liq.a in 2.1.4, Llq.a in 2.1.6) is patched to
+ *     call {@code BookExporter.maybeExport(context, file, password, title)}
+ *     right before the PDF/EPUB reader is launched. At that point
+ *     BookLoadingAct has already downloaded and decrypted the book, so this
+ *     hook has everything: the readable file, the decrypted book password
+ *     (PDF only) used to unlock the PDF, and the book title for the filename.
  *
  * The file is written through MediaStore.Downloads so it works on scoped
  * storage (Android 10+) without any storage permissions. PDF files are
@@ -50,12 +50,13 @@ val saveBookToDownloadsPatch = bytecodePatch(
         // BookModel moved packages in 2.1.6, so pick the descriptor from the
         // fingerprint that actually matched. p0..p4 are identical in both
         // versions: (Object caller, File, byte[] password, BookModel, String).
-        val bookReaderMethod = BookReaderIntentFingerprint.methodOrNull
+        val v214Method = BookReaderIntentFingerprint.methodOrNull
+        val bookReaderMethod = v214Method
             ?: BookReaderIntentFingerprintV216.methodOrNull
             ?: throw IllegalStateException("Reader intent builder not found")
 
         val bookModelClass =
-            if (BookReaderIntentFingerprint.methodOrNull != null)
+            if (v214Method != null)
                 "Lcom/aksaramaya/ilibrarycore/model/BookModel;"
             else
                 "Lmam/reader/ilibrary/core/model/BookModel;"

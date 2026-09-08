@@ -1,6 +1,5 @@
 package app.ipusnas.patches.privacy
 
-import app.ipusnas.patches.shared.fingerprintOrNull
 import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.ipusnas.patches.shared.Constants.COMPATIBILITY_IPUSNAS
@@ -10,8 +9,8 @@ import app.ipusnas.patches.shared.Constants.COMPATIBILITY_IPUSNAS
  * breach or an APK integrity failure (POST /api/internal/telegram/send).
  * Neutralizing these methods stops the app from reporting the patched device.
  *
- * 2.1.6 reobfuscated reportIntegrityFailure to "b" (static); the fallback
- * fingerprint list covers both versions.
+ * 2.1.6 reobfuscated reportIntegrityFailure to "b" (public static (String)V);
+ * both fingerprints are tried, whichever matches first wins.
  */
 @Suppress("unused")
 val neuterSecurityReporterPatch = bytecodePatch(
@@ -23,9 +22,10 @@ val neuterSecurityReporterPatch = bytecodePatch(
     execute {
         // reportBreach kept its name in both 2.1.4 and 2.1.6.
         SecurityReporterBreachFingerprint.method.addInstruction(0, "return-void")
-        fingerprintOrNull(
-            SecurityReporterIntegrityFingerprint,
-            SecurityReporterIntegrityFingerprintV216,
-        ).addInstruction(0, "return-void")
+
+        val integrityMethod = SecurityReporterIntegrityFingerprint.methodOrNull
+            ?: SecurityReporterIntegrityFingerprintV216.methodOrNull
+            ?: throw IllegalStateException("SecurityReporter integrity method not found")
+        integrityMethod.addInstruction(0, "return-void")
     }
 }
