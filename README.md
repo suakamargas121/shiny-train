@@ -34,7 +34,7 @@ pipeline documented in `research/docs/modifications.md`.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0](https://github.com/suakamargas121/shiny-train/releases/tag/v1.0.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;6 patches total
+> **[v1.0.1](https://github.com/suakamargas121/shiny-train/releases/tag/v1.0.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;6 patches total
 <details open>
 <summary>📦 iPusnas&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -46,7 +46,7 @@ pipeline documented in `research/docs/modifications.md`.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Bypass Play Store redirect](#bypass-play-store-redirect) | Makes the PairIP license check pass for sideloaded installs so the app no longer redirects to the Play Store and closes. |  |
+| [Bypass Play Store redirect](#bypass-play-store-redirect) | Disables the PairIP license check entirely (initial + repeated checks and the trial path) so a sideloaded or patched build is never flagged, and no Play Store redirect or shutdown happens. |  |
 | [Disable Firebase Analytics and FCM](#disable-firebase-analytics-and-fcm) | Disables Google Firebase Analytics tracking and removes Firebase Cloud Messaging push notifications. |  |
 | [Neuter Telegram security breach reporter](#neuter-telegram-security-breach-reporter) | Stops the app from reporting security breaches or APK integrity failures to the developers' Telegram channel. |  |
 | [Remove certificate pinning](#remove-certificate-pinning) | Removes the hard-coded OkHttp certificate pins and SSL pinning interceptor so the app trusts system and user CAs. |  |

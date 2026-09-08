@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/suakamargas121/shiny-train/compare/v1.0.0...v1.0.1) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* import removeInstructions extension in FCM patch ([a450ea9](https://github.com/suakamargas121/shiny-train/commit/a450ea9ceb7bec741fcad3ca7fb50c97e4984e46))
+* sever PairIP license-check chain and repair FCM patch smali ([fdc2b81](https://github.com/suakamargas121/shiny-train/commit/fdc2b81b23e1b483f89d849f0e0f1cc480316a91))
+
 ## 1.0.0 (2026-09-08)
 
 ### 🐛 Bug Fixes

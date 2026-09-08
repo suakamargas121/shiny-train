@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T19:49:54",
-  "description": "## 1.0.0 (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* make gradlew executable ([835a055](https://github.com/suakamargas121/shiny-train/commit/835a0556fc33f42c7e643aba50b56130ea5cb749))\n* resolve Kotlin compile errors in fingerprint helpers ([c33d402](https://github.com/suakamargas121/shiny-train/commit/c33d40244c81a9baa6b8009ee9e3fc8706a3a6ef))",
-  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.0.0/patches-1.0.0.mpp",
+  "created_at": "2026-09-08T20:15:37",
+  "description": "## [1.0.1](https://github.com/suakamargas121/shiny-train/compare/v1.0.0...v1.0.1) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* import removeInstructions extension in FCM patch ([a450ea9](https://github.com/suakamargas121/shiny-train/commit/a450ea9ceb7bec741fcad3ca7fb50c97e4984e46))\n* sever PairIP license-check chain and repair FCM patch smali ([fdc2b81](https://github.com/suakamargas121/shiny-train/commit/fdc2b81b23e1b483f89d849f0e0f1cc480316a91))",
+  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.0.1/patches-1.0.1.mpp",
   "signature_download_url": "",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
