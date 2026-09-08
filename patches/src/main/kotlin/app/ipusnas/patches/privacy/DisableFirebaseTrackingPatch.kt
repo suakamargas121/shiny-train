@@ -2,6 +2,7 @@ package app.ipusnas.patches.privacy
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.ipusnas.patches.shared.Constants.COMPATIBILITY_IPUSNAS
