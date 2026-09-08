@@ -94,6 +94,31 @@ object LicenseClientPerformLocalInstallerCheckFingerprint : Fingerprint(
 )
 
 /**
+ * Entry point of every license verification: PairIP's Application
+ * attachBaseContext calls this with the app context. Neutering it prevents
+ * the licensing-service bind, the repeated checks, and the error/paywall UI.
+ */
+object LicenseClientCheckLicenseFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
+    name = "checkLicense",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;"),
+)
+
+/**
+ * Trial-expiry path (TrialClient.stopTrial delegates here); it drives the
+ * same LicenseActivity error/paywall UI.
+ */
+object LicenseClientStopTrialFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
+    name = "stopTrial",
+    accessFlags = listOf(AccessFlags.STATIC),
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;"),
+)
+
+/**
  * LandingPageAct.B() registers the device for FCM push notifications.
  * Neutering it stops token registration (which is meaningless once the
  * FCM components are removed from the manifest).

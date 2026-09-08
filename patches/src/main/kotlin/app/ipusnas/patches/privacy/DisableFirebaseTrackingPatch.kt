@@ -94,15 +94,14 @@ private val disableFirebaseManifestPatch = resourcePatch {
  * 2.1.6 C()V layout:
  *   insns 0..55   notification-channel creation      (kept)
  *   insns 56..57  FirebaseApp null checks            (harmless)
- *   insn  58      const-class FirebaseMessaging      (skip from here)
- *   insns 58..68  setAutoInitEnabled / getToken etc. (skipped)
- *   insn  69      return-void                        (jump target)
+ *   insns 58..68  FirebaseMessaging block            (removed)
+ *   insn  69      return-void
  *
- * Inserting `return-void` at index 0 would also kill channel creation, so the
- * patch inserts a `goto` right before the Firebase const-class landing on the
- * first return-void at or after it. The branch offset must be in 16-bit code
- * units (invoke = 3, const-class = 2, goto = 2), NOT instruction indices, and
- * includes the goto's own 2 code units.
+ * Inserting `return-void` at index 0 would also kill channel creation. The
+ * whole Firebase block is deleted instead, so execution falls through to the
+ * method's own trailing return-void. Inline smali cannot express numeric
+ * branch offsets ("goto +25" fails to lex), and labels only work inside the
+ * added snippet, so deletion is the clean approach.
  */
 private val neuterLandingPageFcmPatch = bytecodePatch {
     compatibleWith(COMPATIBILITY_IPUSNAS)
@@ -121,13 +120,10 @@ private val neuterLandingPageFcmPatch = bytecodePatch {
 
         val returnIdx = (firebaseIdx until instructions.size)
             .firstOrNull { instructions[it].opcode == Opcode.RETURN_VOID }
+            ?: -1
 
-        val skipUnits = returnIdx?.let {
-            instructions.subList(firebaseIdx, it).sumOf { insn -> insn.codeUnits } + 2
-        } ?: 0
-
-        if (firebaseIdx > 0 && returnIdx != null && skipUnits in 3..126) {
-            method.addInstruction(firebaseIdx, "goto +$skipUnits")
+        if (firebaseIdx > 0 && returnIdx > firebaseIdx) {
+            method.removeInstructions(firebaseIdx, returnIdx - firebaseIdx)
         } else {
             // Layout unexpected — fall back to neutering the whole method.
             // Channels get recreated on every activity launch in this app.
