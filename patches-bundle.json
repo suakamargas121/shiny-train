@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-08T20:15:37",
-  "description": "## [1.0.1](https://github.com/suakamargas121/shiny-train/compare/v1.0.0...v1.0.1) (2026-09-08)\n\n### 🐛 Bug Fixes\n\n* import removeInstructions extension in FCM patch ([a450ea9](https://github.com/suakamargas121/shiny-train/commit/a450ea9ceb7bec741fcad3ca7fb50c97e4984e46))\n* sever PairIP license-check chain and repair FCM patch smali ([fdc2b81](https://github.com/suakamargas121/shiny-train/commit/fdc2b81b23e1b483f89d849f0e0f1cc480316a91))",
-  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.0.1/patches-1.0.1.mpp",
+  "created_at": "2026-09-09T01:34:44",
+  "description": "## [1.1.0](https://github.com/suakamargas121/shiny-train/compare/v1.0.1...v1.1.0) (2026-09-09)\n\n### 🐛 Bug Fixes\n\n* cast uses-sdk node to org.w3c.dom.Element before setAttributeNS ([ea103b0](https://github.com/suakamargas121/shiny-train/commit/ea103b00ae19bfd12acb5da6629a84a13c58467d))\n* qualify Constants reference and use namespace-aware minSdk attribute set ([4b1b078](https://github.com/suakamargas121/shiny-train/commit/4b1b078787d4df80c5a7c05eab287a5044d2bd1b))\n\n### ✨ New Features\n\n* add Android 10 compatibility patch (minSdk 29) ([36d5e30](https://github.com/suakamargas121/shiny-train/commit/36d5e306ee5764b5b69d0e7983b0c3fb7a6f22a0))",
+  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.1.0/patches-1.1.0.mpp",
   "signature_download_url": "",
-  "version": "1.0.1"
+  "version": "1.1.0"
 }

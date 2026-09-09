@@ -1,10 +1,52 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "patches": [
     {
+      "name": "Android 10 compatibility (minSdk 29)",
+      "description": "Lowers minSdkVersion to 29 so the patched app installs on Android 10 and 11. All newer-API calls in the app are version-guarded.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "mam.reader.ipusnas",
+          "name": "iPusnas",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1D6BA8",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.1.4",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.1.5",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.1.6",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Bypass Play Store redirect",
-      "description": "Makes the PairIP license check pass for sideloaded installs so the app no longer redirects to the Play Store and closes.",
+      "description": "Disables the PairIP license check entirely (initial + repeated checks and the trial path) so a sideloaded or patched build is never flagged, and no Play Store redirect or shutdown happens.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -24,14 +66,14 @@
               "description": null
             },
             {
-              "version": "2.1.6",
+              "version": "2.1.5",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
             },
             {
-              "version": "2.1.5",
+              "version": "2.1.6",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -67,14 +109,14 @@
               "description": null
             },
             {
-              "version": "2.1.6",
+              "version": "2.1.5",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
             },
             {
-              "version": "2.1.5",
+              "version": "2.1.6",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -107,14 +149,14 @@
               "description": null
             },
             {
-              "version": "2.1.6",
+              "version": "2.1.5",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
             },
             {
-              "version": "2.1.5",
+              "version": "2.1.6",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -147,14 +189,14 @@
               "description": null
             },
             {
-              "version": "2.1.6",
+              "version": "2.1.5",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
             },
             {
-              "version": "2.1.5",
+              "version": "2.1.6",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -187,14 +229,14 @@
               "description": null
             },
             {
-              "version": "2.1.6",
+              "version": "2.1.5",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
             },
             {
-              "version": "2.1.5",
+              "version": "2.1.6",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -210,48 +252,6 @@
       "description": "Adds a menu option that downloads, decrypts, and saves the book as a readable PDF or EPUB in the public Downloads folder.",
       "default": true,
       "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "mam.reader.ipusnas",
-          "name": "iPusnas",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1D6BA8",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.1.4",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "2.1.6",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "2.1.5",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Android 10 compatibility (minSdk 29)",
-      "description": "Lowers minSdkVersion to 29 so the patched app installs on Android 10 and 11. All newer-API calls in the app are version-guarded.",
-      "default": true,
-      "dependencies": [
-        "ResourcePatch"
-      ],
       "compatiblePackages": [
         {
           "packageName": "mam.reader.ipusnas",

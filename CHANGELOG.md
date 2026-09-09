@@ -1,3 +1,14 @@
+## [1.1.0](https://github.com/suakamargas121/shiny-train/compare/v1.0.1...v1.1.0) (2026-09-09)
+
+### 🐛 Bug Fixes
+
+* cast uses-sdk node to org.w3c.dom.Element before setAttributeNS ([ea103b0](https://github.com/suakamargas121/shiny-train/commit/ea103b00ae19bfd12acb5da6629a84a13c58467d))
+* qualify Constants reference and use namespace-aware minSdk attribute set ([4b1b078](https://github.com/suakamargas121/shiny-train/commit/4b1b078787d4df80c5a7c05eab287a5044d2bd1b))
+
+### ✨ New Features
+
+* add Android 10 compatibility patch (minSdk 29) ([36d5e30](https://github.com/suakamargas121/shiny-train/commit/36d5e306ee5764b5b69d0e7983b0c3fb7a6f22a0))
+
 ## [1.0.1](https://github.com/suakamargas121/shiny-train/compare/v1.0.0...v1.0.1) (2026-09-08)
 
 ### 🐛 Bug Fixes
