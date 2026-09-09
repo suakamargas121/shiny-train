@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-09T02:08:38",
-  "description": "## [1.2.0](https://github.com/suakamargas121/shiny-train/compare/v1.1.0...v1.2.0) (2026-09-09)\n\n### 🐛 Bug Fixes\n\n* missing Fingerprint import in attestation patch ([81bf01b](https://github.com/suakamargas121/shiny-train/commit/81bf01bab51ad5afdb558fdbd3a7a786ebec53b7))\n\n### ✨ New Features\n\n* bypass server-side device attestation (Play Integrity) ([f278984](https://github.com/suakamargas121/shiny-train/commit/f278984e34073591b34cd1029c92f91c1dae7f67))",
-  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.2.0/patches-1.2.0.mpp",
+  "created_at": "2026-09-09T02:46:32",
+  "description": "## [1.3.0](https://github.com/suakamargas121/shiny-train/compare/v1.2.0...v1.3.0) (2026-09-09)\n\n### ✨ New Features\n\n* keep attestation but feed it an empty Play Integrity token ([1e43c3a](https://github.com/suakamargas121/shiny-train/commit/1e43c3a07d7838bf44296fde59a8e3e861884ff2))",
+  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.3.0/patches-1.3.0.mpp",
   "signature_download_url": "",
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

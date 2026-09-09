@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/suakamargas121/shiny-train/compare/v1.2.0...v1.3.0) (2026-09-09)
+
+### ✨ New Features
+
+* keep attestation but feed it an empty Play Integrity token ([1e43c3a](https://github.com/suakamargas121/shiny-train/commit/1e43c3a07d7838bf44296fde59a8e3e861884ff2))
+
 ## [1.2.0](https://github.com/suakamargas121/shiny-train/compare/v1.1.0...v1.2.0) (2026-09-09)
 
 ### 🐛 Bug Fixes
