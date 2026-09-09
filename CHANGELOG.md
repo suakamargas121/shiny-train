@@ -1,3 +1,9 @@
+## [1.3.1](https://github.com/suakamargas121/shiny-train/compare/v1.3.0...v1.3.1) (2026-09-09)
+
+### 🐛 Bug Fixes
+
+* integrity helper b() is PUBLIC FINAL — fingerprint missed FINAL flag ([ae43f46](https://github.com/suakamargas121/shiny-train/commit/ae43f46f296f956fa085fdd6d0fa40240c1beab9))
+
 ## [1.3.0](https://github.com/suakamargas121/shiny-train/compare/v1.2.0...v1.3.0) (2026-09-09)
 
 ### ✨ New Features
