@@ -50,7 +50,7 @@ jobs:
           fi
           echo "Using base APK: $BASE_APK"
           # Redirect JavaExec stdout into the log (Gradle swallows it under --info)
-          ./gradlew :patches:verifyPatches --args="$BASE_APK build/verify-output" --no-daemon --console=plain -i > gradle-full.log 2>&1 || true
+          ./gradlew :patches:verifyPatches --args="$GITHUB_WORKSPACE/$BASE_APK $GITHUB_WORKSPACE/build/verify-output" --no-daemon --console=plain -i > gradle-full.log 2>&1 || true
           grep -E "^\[ (OK|FAIL) \]|Patched dex|Loading patches|Exception" gradle-full.log > verify.log || true
           cat gradle-full.log | tail -4000 >> verify.log
           cp patches/build/verify-output/* build/verify-output/ 2>/dev/null || true
