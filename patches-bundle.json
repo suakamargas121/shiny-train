@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-09-09T01:34:44",
-  "description": "## [1.1.0](https://github.com/suakamargas121/shiny-train/compare/v1.0.1...v1.1.0) (2026-09-09)\n\n### 🐛 Bug Fixes\n\n* cast uses-sdk node to org.w3c.dom.Element before setAttributeNS ([ea103b0](https://github.com/suakamargas121/shiny-train/commit/ea103b00ae19bfd12acb5da6629a84a13c58467d))\n* qualify Constants reference and use namespace-aware minSdk attribute set ([4b1b078](https://github.com/suakamargas121/shiny-train/commit/4b1b078787d4df80c5a7c05eab287a5044d2bd1b))\n\n### ✨ New Features\n\n* add Android 10 compatibility patch (minSdk 29) ([36d5e30](https://github.com/suakamargas121/shiny-train/commit/36d5e306ee5764b5b69d0e7983b0c3fb7a6f22a0))",
-  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.1.0/patches-1.1.0.mpp",
+  "created_at": "2026-09-09T02:08:38",
+  "description": "## [1.2.0](https://github.com/suakamargas121/shiny-train/compare/v1.1.0...v1.2.0) (2026-09-09)\n\n### 🐛 Bug Fixes\n\n* missing Fingerprint import in attestation patch ([81bf01b](https://github.com/suakamargas121/shiny-train/commit/81bf01bab51ad5afdb558fdbd3a7a786ebec53b7))\n\n### ✨ New Features\n\n* bypass server-side device attestation (Play Integrity) ([f278984](https://github.com/suakamargas121/shiny-train/commit/f278984e34073591b34cd1029c92f91c1dae7f67))",
+  "download_url": "https://github.com/suakamargas121/shiny-train/releases/download/v1.2.0/patches-1.2.0.mpp",
   "signature_download_url": "",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

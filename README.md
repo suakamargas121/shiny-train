@@ -34,9 +34,9 @@ pipeline documented in `research/docs/modifications.md`.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0](https://github.com/suakamargas121/shiny-train/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;7 patches total
+> **[v1.2.0](https://github.com/suakamargas121/shiny-train/releases/tag/v1.2.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;8 patches total
 <details open>
-<summary>📦 iPusnas&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
+<summary>📦 iPusnas&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -48,6 +48,7 @@ pipeline documented in `research/docs/modifications.md`.
 |----------|----------------|-----------|
 | [Android 10 compatibility (minSdk 29)](#android-10-compatibility-minsdk-29) | Lowers minSdkVersion to 29 so the patched app installs on Android 10 and 11. All newer-API calls in the app are version-guarded. |  |
 | [Bypass Play Store redirect](#bypass-play-store-redirect) | Disables the PairIP license check entirely (initial + repeated checks and the trial path) so a sideloaded or patched build is never flagged, and no Play Store redirect or shutdown happens. |  |
+| [Bypass device attestation](#bypass-device-attestation) | Skips the server-side device attestation (Play Integrity) check so a patched build is never flagged with 'attestation failed' and its login token is never revoked. |  |
 | [Disable Firebase Analytics and FCM](#disable-firebase-analytics-and-fcm) | Disables Google Firebase Analytics tracking and removes Firebase Cloud Messaging push notifications. |  |
 | [Neuter Telegram security breach reporter](#neuter-telegram-security-breach-reporter) | Stops the app from reporting security breaches or APK integrity failures to the developers' Telegram channel. |  |
 | [Remove certificate pinning](#remove-certificate-pinning) | Removes the hard-coded OkHttp certificate pins and SSL pinning interceptor so the app trusts system and user CAs. |  |

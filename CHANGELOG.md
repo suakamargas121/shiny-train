@@ -1,3 +1,13 @@
+## [1.2.0](https://github.com/suakamargas121/shiny-train/compare/v1.1.0...v1.2.0) (2026-09-09)
+
+### 🐛 Bug Fixes
+
+* missing Fingerprint import in attestation patch ([81bf01b](https://github.com/suakamargas121/shiny-train/commit/81bf01bab51ad5afdb558fdbd3a7a786ebec53b7))
+
+### ✨ New Features
+
+* bypass server-side device attestation (Play Integrity) ([f278984](https://github.com/suakamargas121/shiny-train/commit/f278984e34073591b34cd1029c92f91c1dae7f67))
+
 ## [1.1.0](https://github.com/suakamargas121/shiny-train/compare/v1.0.1...v1.1.0) (2026-09-09)
 
 ### 🐛 Bug Fixes
