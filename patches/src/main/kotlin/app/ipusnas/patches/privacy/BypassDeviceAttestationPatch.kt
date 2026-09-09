@@ -1,5 +1,6 @@
 package app.ipusnas.patches.privacy
 
+import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.ipusnas.patches.shared.Constants.COMPATIBILITY_IPUSNAS
