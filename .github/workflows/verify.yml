@@ -1,0 +1,61 @@
+name: Verify Patches
+
+on:
+  workflow_dispatch:
+    inputs:
+      apk_url:
+        description: 'URL of the base APK to verify against'
+        required: false
+        default: 'https://d.apkpure.com/b/APK/mam.reader.ipusnas?version=latest'
+
+jobs:
+  verify:
+    name: Verify patches against base APK
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Java
+        uses: actions/setup-java@v5.7.0
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Download base APK
+        run: |
+          curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36" \
+            -o base.apk "${{ github.event.inputs.apk_url }}"
+          ls -la base.apk
+          file base.apk
+
+      - name: Build patch bundle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew :patches:build --no-daemon
+
+      - name: Run verifyPatches
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # XAPK support: if the download is a zip, extract the base apk
+          if file base.apk | grep -qi zip; then
+            mkdir -p xapk && cd xapk && unzip -o ../base.apk
+            BASE_APK=$(find . -name "*.apk" | grep -v config | head -1)
+            cd ..
+          else
+            BASE_APK=base.apk
+          fi
+          echo "Using base APK: $BASE_APK"
+          ./gradlew :patches:verifyPatches --args="$BASE_APK build/verify-output" --no-daemon --info | tee verify.log
+
+      - name: Upload verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-report
+          path: |
+            verify.log
+            build/verify-output/
