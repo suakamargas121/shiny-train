@@ -17,13 +17,16 @@ import app.morphe.patcher.patch.resourcePatch
  *  - PairIP install-source probe is force-true before the API-30 call
  */
 private val lowerMinSdkManifestPatch = resourcePatch {
-    compatibleWith(COMPATIBILITY_IPUSNAS)
+    compatibleWith(Constants.COMPATIBILITY_IPUSNAS)
 
     execute {
         document("AndroidManifest.xml").use { document ->
             val usesSdk = document.getElementsByTagName("uses-sdk").item(0)
             if (usesSdk != null) {
-                usesSdk.setAttribute("android:minSdkVersion", "29")
+                val androidNs = "http://schemas.android.com/apk/res/android"
+                usesSdk.attributes.getNamedItem("android:minSdkVersion")
+                    ?.let { usesSdk.setAttributeNS(androidNs, "android:minSdkVersion", "29") }
+                    ?: usesSdk.setAttributeNS(androidNs, "android:minSdkVersion", "29")
             }
         }
     }
@@ -33,7 +36,7 @@ val android10CompatibilityPatch = bytecodePatch(
     name = "Android 10 compatibility (minSdk 29)",
     description = "Lowers minSdkVersion to 29 so the patched app installs on Android 10 and 11. All newer-API calls in the app are version-guarded.",
 ) {
-    compatibleWith(COMPATIBILITY_IPUSNAS)
+    compatibleWith(Constants.COMPATIBILITY_IPUSNAS)
 
     dependsOn(lowerMinSdkManifestPatch)
 
