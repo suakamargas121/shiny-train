@@ -21,12 +21,13 @@ private val lowerMinSdkManifestPatch = resourcePatch {
 
     execute {
         document("AndroidManifest.xml").use { document ->
-            val usesSdk = document.getElementsByTagName("uses-sdk").item(0)
-            if (usesSdk != null) {
-                val androidNs = "http://schemas.android.com/apk/res/android"
-                usesSdk.attributes.getNamedItem("android:minSdkVersion")
-                    ?.let { usesSdk.setAttributeNS(androidNs, "android:minSdkVersion", "29") }
-                    ?: usesSdk.setAttributeNS(androidNs, "android:minSdkVersion", "29")
+            val node = document.getElementsByTagName("uses-sdk").item(0) as? org.w3c.dom.Element
+            if (node != null) {
+                node.setAttributeNS(
+                    "http://schemas.android.com/apk/res/android",
+                    "android:minSdkVersion",
+                    "29"
+                )
             }
         }
     }
