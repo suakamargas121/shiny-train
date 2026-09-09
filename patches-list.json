@@ -45,89 +45,9 @@
       "options": []
     },
     {
-      "name": "Bypass Play Integrity token (keep attestation)",
-      "description": "Replaces the Play Integrity token with an empty one during device attestation. The attestation, PoP signing and token refresh keep working; the server accepts an empty integrity token.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "mam.reader.ipusnas",
-          "name": "iPusnas",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1D6BA8",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.1.4",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "2.1.5",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "2.1.6",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Bypass Play Store redirect",
       "description": "Disables the PairIP license check entirely (initial + repeated checks and the trial path) so a sideloaded or patched build is never flagged, and no Play Store redirect or shutdown happens.",
       "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "mam.reader.ipusnas",
-          "name": "iPusnas",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1D6BA8",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.1.4",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "2.1.5",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "2.1.6",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Bypass device attestation",
-      "description": "Skips device attestation entirely. The server rejects sessions without attestation — use 'Bypass Play Integrity token' instead.",
-      "default": false,
       "dependencies": [],
       "compatiblePackages": [
         {

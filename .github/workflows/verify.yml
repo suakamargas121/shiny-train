@@ -79,3 +79,10 @@ jobs:
           path: |
             verify.log
             build/verify-output/
+
+      - name: Upload built mpp
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patches-mpp
+          path: patches/build/libs/patches-*.mpp
