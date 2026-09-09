@@ -34,10 +34,11 @@ object DeviceAttestationRequiredFingerprint : Fingerprint(
 )
 
 @Suppress("unused")
+@Deprecated("Disables attestation entirely; the server rejects that. Use BypassPlayIntegrityTokenPatch instead.")
 val bypassDeviceAttestationPatch = bytecodePatch(
     name = "Bypass device attestation",
-    description = "Skips the server-side device attestation (Play Integrity) check so a patched build is never flagged with 'attestation failed' and its login token is never revoked.",
-    default = true,
+    description = "Skips device attestation entirely. The server rejects sessions without attestation — use 'Bypass Play Integrity token' instead.",
+    default = false,
 ) {
     compatibleWith(COMPATIBILITY_IPUSNAS)
 
