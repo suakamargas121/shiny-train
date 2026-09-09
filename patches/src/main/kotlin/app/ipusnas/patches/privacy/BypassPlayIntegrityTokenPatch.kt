@@ -40,7 +40,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
 private val standardIntegrityHelperFingerprint = Fingerprint(
     definingClass = "Lbs2;",
     name = "b",
-    accessFlags = listOf(AccessFlags.PUBLIC),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "Ljava/lang/Object;",
     parameters = listOf(
         "Ljava/lang/String;",
